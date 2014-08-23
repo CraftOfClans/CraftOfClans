@@ -1,20 +1,27 @@
 package com.icraftgames.main;
 
-import java.util.logging.Logger;
 
-import org.bukkit.Bukkit;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CraftOfClans extends JavaPlugin implements Listener { 
 	
+	public Location Cursor;
 	
 	public void onEnable() {
 		
-	  getServer().getPluginManager().registerEvents(this, this);
+		PluginManager pm = getServer().getPluginManager();
+	    pm.registerEvents(this, this);
 	}
 	
 	public void onDisable() {
@@ -25,6 +32,22 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public void onJoin(PlayerJoinEvent ev) {
 		
 		Player p = ev.getPlayer();
+	}
+	
+	@EventHandler
+	public void onPlayerInteract(PlayerInteractEvent ev) {
+		Player p = ev.getPlayer();
+		
+	}
+	
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		
+		if(sender instanceof Player) {
+			
+		}
+		
+		return false;
+		
 	}
 	
 	

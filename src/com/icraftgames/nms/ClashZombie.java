@@ -8,7 +8,10 @@ public class ClashZombie extends EntityZombie {
 	public ClashZombie(World world) {
 		super(world);
 		
+		this.goalSelector.a(0, new PathfinderGoalWalkToLoc(null, null, bh));
 	}
+	
+	
 	
 	
 
