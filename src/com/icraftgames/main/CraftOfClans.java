@@ -5,9 +5,6 @@ package com.icraftgames.main;
 
 
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -25,20 +22,16 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
+
+import com.icraftgames.manage.ElixerGoldManager;
+import com.icraftgames.manage.UIManager;
+import com.icraftgames.manage.onJoin;
 import com.icraftgames.util.Build;
-import com.icraftgames.util.ElixerGoldManager;
-import com.icraftgames.util.GridSnap;
-import com.icraftgames.util.UIManager;
+
 
 public class CraftOfClans extends JavaPlugin implements Listener { 
 	
@@ -50,7 +43,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	    pm.registerEvents(this, this);
 	    //registerEvents(this, new ChatManager());
 	    registerEvents(this, new Build());
-	    List<Player> list = new ArrayList<Player>();
+	    registerEvents(this, new onJoin());
 	    
 	    for(Player p : Bukkit.getOnlinePlayers()) {
 	    	getConfig().set(p.getName().toLowerCase() + ".mode", Boolean.valueOf(false));
@@ -67,43 +60,15 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	
 	public static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
 		for (Listener listener : listeners) {
-		Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
-			}
+			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
 		}
+	}
 	
 	public void onDisable() {
 	
 	}
 
-	@EventHandler
-	public void onJoin(PlayerJoinEvent ev) {
-		Player p = ev.getPlayer();
-		p.setMaxHealth(0.1);
-		
-		
-	    for(Player p1 : Bukkit.getOnlinePlayers()) {
-	    	getConfig().set(p1.getName().toLowerCase() + ".mode", Boolean.valueOf(false));
-	    }
-		
-		
-		UIManager.giveItemName(p, Material.GOLD_BLOCK, 1, "Interact", "Interact with buildings!");
-		UIManager.giveItemName(p, Material.DIAMOND_BLOCK, 2, "Menu", "Use COC>Commands!");
-		UIManager.giveItemName(p, Material.EMERALD, 8, "Shop", "Buy structres!");
-		UIManager.giveItemName(p, Material.NETHER_STAR, 4, "--->", "Buy structres!");
-		if(getConfig().getString(p.getName().toLowerCase() + ".tempSelected") == "none") {
-			UIManager.giveItemName(p, Material.WOOL, 5, "No Structres Selected", "Go to the shop to add structres!");
-		}else {
-			UIManager.giveItemName(p, Material.WOOL, 5, getConfig().getString(p.getName().toLowerCase() + ".tempSelected"), "Right click or place the block to create!");
-		}
-		UIManager.giveItemName(p, Material.NETHER_STAR, 6, "<---", "Buy structres!");
-		
-		UIManager.giveItemName(p, Material.IRON_FENCE, 0, ChatColor.RED + "" + ChatColor.BOLD + "null", "null");
-		UIManager.giveItemName(p, Material.IRON_FENCE, 3, ChatColor.RED + "" + ChatColor.BOLD + "null", "null");
-		UIManager.giveItemName(p, Material.IRON_FENCE, 7, ChatColor.RED + "" + ChatColor.BOLD + "null", "null");
-		
-		ItemStack itemStack = new ItemStack(Material.IRON_FENCE);
-		ev.getPlayer().getInventory().setItem(0, itemStack);
-	}
+
 	
 
 	
@@ -217,7 +182,6 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void placeblock(final BlockPlaceEvent event) {
 		final Player p = event.getPlayer();
@@ -232,6 +196,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			/** Create Selection **/
 			
 			Block b = event.getBlock();
+			@SuppressWarnings("unused")
 			Location block = b.getLocation();
 			Location looking_at = b.getLocation(); Location block_on_grid = new Location(looking_at.getWorld(), looking_at.getX(), 31, looking_at.getZ());
 			

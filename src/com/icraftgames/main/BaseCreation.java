@@ -12,9 +12,10 @@ public class BaseCreation {
 	
 	
 	public BaseCreation(CraftOfClans plugin){
-		this.plugin = plugin;
+		BaseCreation.plugin = plugin;
 	}
 	
+	@SuppressWarnings("unused")
 	public static void createBase(Player player) {
 
 		//Gets latest base created

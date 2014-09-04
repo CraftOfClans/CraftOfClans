@@ -96,6 +96,7 @@ public class Schematic {
 
 	public static Schematic loadSchematic(File file) throws IOException {
 		FileInputStream stream = new FileInputStream(file);
+		@SuppressWarnings("resource")
 		NBTInputStream nbtStream = new NBTInputStream(stream);
 		CompoundTag schematicTag = (CompoundTag) nbtStream.readTag();
 		if (!schematicTag.getName().equals("Schematic")) {
