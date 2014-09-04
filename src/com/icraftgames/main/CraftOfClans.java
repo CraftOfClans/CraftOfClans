@@ -35,10 +35,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
-
-import com.icraftgames.util.BarAPI;
 import com.icraftgames.util.Build;
-import com.icraftgames.util.ChatManager;
 import com.icraftgames.util.ElixerGoldManager;
 import com.icraftgames.util.GridSnap;
 import com.icraftgames.util.UIManager;
@@ -51,7 +48,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public void onEnable() {
 		PluginManager pm = getServer().getPluginManager();
 	    pm.registerEvents(this, this);
-	    registerEvents(this, new ChatManager());
+	    //registerEvents(this, new ChatManager());
 	    registerEvents(this, new Build());
 	    List<Player> list = new ArrayList<Player>();
 	    
@@ -116,7 +113,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			Player player = (Player) sender;
 			if(command.getName().equalsIgnoreCase("create")) {
 				player.sendMessage("api");
-				BarAPI.setBar(player.getLocation(), 5, 3);
+				//BarAPI.setBar(player.getLocation(), 5, 3);
 			}else if(command.getName().equalsIgnoreCase("paste")) {
 				Build.BuildStructre(player.getLocation(), player, "base.schematic");
 			}else if(command.getName().equalsIgnoreCase("createplayer")) {
