@@ -1,4 +1,4 @@
 CraftOfClans
 ============
 
-Craft Of Clans Gamemode for Exorath.org
+Gamemode for Exorath server.
