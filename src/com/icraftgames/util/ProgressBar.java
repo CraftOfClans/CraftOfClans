@@ -3,7 +3,6 @@ package com.icraftgames.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -53,32 +52,190 @@ public class ProgressBar {
 		init (barName, cornerOne, cornerTwo, end, fullMaterial, emptyMaterial);
 	}
 	
+	/**
+	 * 
+	 * Constructor for the ProgressBar object.
+	 * 
+	 * @param barName
+	 * Name of the progress bar. Use null if you don't need a name.
+	 * 
+	 * @param cornerOne
+	 * One corner of the first chunk.
+	 * 
+	 * @param cornerTwo
+	 * Opposite corner of the first chunk. Must share a plane with the first corner.
+	 * 
+	 * @param end
+	 * Location somewhere on the end chunk of the progress bar.
+	 * 
+	 * @param fullMaterial
+	 * Material that will be used as the filled texture.
+	 * 
+	 * @param fullMaterialColor
+	 * BlockColor enum for the full material. Use this to set the color of colored blocks such as wool or stained glass.
+	 * 
+	 * @param emptyMaterial
+	 * Material that will be used as the empty texture.
+	 * 
+	 * @param emptyMaterialColor
+	 * BlockColor enum for the empty material. Use this to set the color of colored blocks such as wool or stained glass.
+	 */
 	public ProgressBar (String barName, Block cornerOne, Block cornerTwo, Block end, Material fullMaterial, BlockColor fullMaterialColor, Material emptyMaterial, BlockColor emptyMaterialColor) {
 		setFullColor (fullMaterialColor);
 		setEmptyColor (emptyMaterialColor);
 		init (barName, cornerOne, cornerTwo, end, fullMaterial, emptyMaterial);
 	}
 	
+	/**
+	 * 
+	 * Constructor for the ProgressBar object.
+	 * 
+	 * @param barName
+	 * Name of the progress bar. Use null if you don't need a name.
+	 * 
+	 * @param cornerOne
+	 * One corner of the first chunk.
+	 * 
+	 * @param cornerTwo
+	 * Opposite corner of the first chunk. Must share a plane with the first corner.
+	 * 
+	 * @param end
+	 * Location somewhere on the end chunk of the progress bar.
+	 * 
+	 * @param fullMaterial
+	 * Material that will be used as the filled texture.
+	 * 
+	 * @param fullMaterialColor
+	 * BlockColor enum for the full material. Use this to set the color of colored blocks such as wool or stained glass.
+	 * 
+	 * @param emptyMaterial
+	 * Material that will be used as the empty texture.
+	 * 
+	 */
 	public ProgressBar (String barName, Block cornerOne, Block cornerTwo, Block end, Material fullMaterial, BlockColor fullMaterialColor, Material emptyMaterial) {
 		setFullColor (fullMaterialColor);
 		init (barName, cornerOne, cornerTwo, end, fullMaterial, emptyMaterial);
 	}
 	
+	/**
+	 * 
+	 * Constructor for the ProgressBar object.
+	 * 
+	 * @param barName
+	 * Name of the progress bar. Use null if you don't need a name.
+	 * 
+	 * @param cornerOne
+	 * One corner of the first chunk.
+	 * 
+	 * @param cornerTwo
+	 * Opposite corner of the first chunk. Must share a plane with the first corner.
+	 * 
+	 * @param end
+	 * Location somewhere on the end chunk of the progress bar.
+	 * 
+	 * @param fullMaterial
+	 * Material that will be used as the filled texture.
+	 * 
+	 * @param emptyMaterial
+	 * Material that will be used as the empty texture.
+	 * 
+	 * @param emptyMaterialColor
+	 * BlockColor enum for the empty material. Use this to set the color of colored blocks such as wool or stained glass.
+	 */
 	public ProgressBar (String barName, Block cornerOne, Block cornerTwo, Block end, Material fullMaterial, Material emptyMaterial, BlockColor emptyMaterialColor) {
 		setEmptyColor (emptyMaterialColor);
 		init (barName, cornerOne, cornerTwo, end, fullMaterial, emptyMaterial);
 	}
 	
+	/**
+	 * 
+	 * Constructor for the ProgressBar object.
+	 * 
+	 * @param barName
+	 * Name of the progress bar. Use null if you don't need a name.
+	 * 
+	 * @param cornerOne
+	 * One corner of the first chunk.
+	 * 
+	 * @param cornerTwo
+	 * Opposite corner of the first chunk. Must share a plane with the first corner.
+	 * 
+	 * @param end
+	 * Location somewhere on the end chunk of the progress bar.
+	 * 
+	 * @param fullMaterial
+	 * Material that will be used as the filled texture.
+	 * 
+	 * @param emptyMaterial
+	 * Material that will be used as the empty texture.
+	 * 
+	 * @param emptyData
+	 * Data value for the empty texture.
+	 */
 	public ProgressBar (String barName, Block cornerOne, Block cornerTwo, Block end, Material fullMaterial, Material emptyMaterial, byte emptyData) {
 		this.emptyMaterialDataValue = emptyData;
 		init (barName, cornerOne, cornerTwo, end, fullMaterial, emptyMaterial);
 	}
 	
+	/**
+	 * 
+	 * Constructor for the ProgressBar object.
+	 * 
+	 * @param barName
+	 * Name of the progress bar. Use null if you don't need a name.
+	 * 
+	 * @param cornerOne
+	 * One corner of the first chunk.
+	 * 
+	 * @param cornerTwo
+	 * Opposite corner of the first chunk. Must share a plane with the first corner.
+	 * 
+	 * @param end
+	 * Location somewhere on the end chunk of the progress bar.
+	 * 
+	 * @param fullMaterial
+	 * Material that will be used as the filled texture.
+	 * 
+	 * @param fullData
+	 * Data value for the full texture
+	 * 
+	 * @param emptyMaterial
+	 * Material that will be used as the empty texture.
+	 * 
+	 */
 	public ProgressBar (String barName, Block cornerOne, Block cornerTwo, Block end, Material fullMaterial, byte fullData, Material emptyMaterial) {
 		this.fullMaterialDataValue = fullData;
 		init (barName, cornerOne, cornerTwo, end, fullMaterial, emptyMaterial);
 	}
 	
+	/**
+	 * 
+	 * Constructor for the ProgressBar object.
+	 * 
+	 * @param barName
+	 * Name of the progress bar. Use null if you don't need a name.
+	 * 
+	 * @param cornerOne
+	 * One corner of the first chunk.
+	 * 
+	 * @param cornerTwo
+	 * Opposite corner of the first chunk. Must share a plane with the first corner.
+	 * 
+	 * @param end
+	 * Location somewhere on the end chunk of the progress bar.
+	 * 
+	 * @param fullMaterial
+	 * Material that will be used as the filled texture.
+	 * 
+	 * @param fullData
+	 * Data value for the full texture
+	 * 
+	 * @param emptyMaterial
+	 * Material that will be used as the empty texture.
+	 * 
+	 * @param emptyData
+	 * Data value for the empty texture.
+	 */
 	public ProgressBar (String barName, Block cornerOne, Block cornerTwo, Block end, Material fullMaterial, byte fullData, Material emptyMaterial, byte emptyData) {
 		this.emptyMaterialDataValue = emptyData;
 		this.fullMaterialDataValue = fullData;
