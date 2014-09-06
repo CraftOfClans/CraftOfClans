@@ -40,15 +40,7 @@ public class ElixerGoldManager {
 			Score Gold = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GOLD + "Gold:"));
 			Gold.setScore(getGold());
 			
-			
-			
-			
-			
-			
 		}
-		
-		
-		
 	}
 
 }

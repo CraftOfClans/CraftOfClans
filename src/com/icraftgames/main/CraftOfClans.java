@@ -175,9 +175,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void dropitem(PlayerDropItemEvent event) {
-		if(event.getPlayer().getGameMode() == GameMode.CREATIVE) {
-			
-		}else {
+		if(!(event.getPlayer().getGameMode() == GameMode.CREATIVE)) {
 			event.setCancelled(true);
 		}
 	}
