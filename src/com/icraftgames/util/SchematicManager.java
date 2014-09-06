@@ -10,7 +10,7 @@ package com.icraftgames.util;
 /////////////////////////////////////////////////////////////////
 
 
-import net.citizensnpcs.api.jnbt.*;
+import com.icraftgames.jnbt.*;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
-public class Schematic
+public class SchematicManager
 {
 
     private short[] blocks;
@@ -30,7 +30,7 @@ public class Schematic
     private short length;
     private short height;
 
-    private Schematic(short[] blocks, byte[] data, short width, short length, short height)
+    private SchematicManager(short[] blocks, byte[] data, short width, short length, short height)
     {
         this.blocks = blocks;
         this.data = data;
@@ -52,7 +52,7 @@ public class Schematic
         }
     }
 
-    public static Schematic load(File file) throws IOException
+    public static SchematicManager load(File file) throws IOException
     {
         FileInputStream stream = new FileInputStream(file);
         NBTInputStream nbtStream = new NBTInputStream(new GZIPInputStream(stream));
@@ -100,7 +100,7 @@ public class Schematic
             }
         }
 
-        return new Schematic(blocks, blockData, width, length, height);
+        return new SchematicManager(blocks, blockData, width, length, height);
     }
 
     /**
