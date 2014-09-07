@@ -56,6 +56,8 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 		objectiveElixir.setDisplaySlot(DisplaySlot.SIDEBAR);*/
 	    
 	    ElixerGoldManager.setUp();
+	    
+	    System.out.println("CraftOfClans is now running.");
 	}
 	
 	public static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
@@ -65,7 +67,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	}
 	
 	public void onDisable() {
-	
+		System.out.println("CraftOfClans has been disabled.");
 	}
 
 
