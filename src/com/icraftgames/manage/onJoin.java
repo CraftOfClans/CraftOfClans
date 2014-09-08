@@ -35,10 +35,8 @@ public class onJoin implements Listener{
 		Player p = ev.getPlayer();
 		p.setMaxHealth(0.1);
 		
-		String uuid = ev.getPlayer().getUniqueId().toString();
-		
-	    if (plugin.getConfig().get(uuid + ".mode") == null) {
-	    	plugin.getConfig().set(uuid + ".mode", Boolean.valueOf(false));
+	    if (plugin.getConfig().get("player." + player.getName().toLowerCase() + ".mode") == null) {
+	    	plugin.getConfig().set("player." + player.getName().toLowerCase() + ".mode", Boolean.valueOf(false));
 	    }
 		
 		
