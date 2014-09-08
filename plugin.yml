@@ -1,0 +1,7 @@
+name: CraftOfClans
+main: com.icraftgames.main.CraftOfClans
+version: 0.01
+
+description: >
+                 Craft of Clans
+commands:

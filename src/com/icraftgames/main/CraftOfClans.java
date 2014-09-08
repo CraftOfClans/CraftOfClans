@@ -39,15 +39,14 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public CraftOfClans plugin;
 	
 	public void onEnable() {
+		plugin = this;
+		
 		PluginManager pm = getServer().getPluginManager();
 	    pm.registerEvents(this, this);
 	    //registerEvents(this, new ChatManager());
 	    registerEvents(this, new Build());
-	    registerEvents(this, new onJoin());
+	    registerEvents(this, new onJoin(plugin));
 	    
-	    for(Player p : Bukkit.getOnlinePlayers()) {
-	    	getConfig().set(p.getName().toLowerCase() + ".mode", Boolean.valueOf(false));
-	    }
 		/*ScoreboardManager manager = Bukkit.getScoreboardManager();
 		Scoreboard board = manager.getNewScoreboard();
 		Objective objectiveGold = board.registerNewObjective("gold", "dummy");
