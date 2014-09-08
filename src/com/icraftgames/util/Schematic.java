@@ -18,14 +18,14 @@ public class Schematic {
 	private short[] blocks;
 	private byte[] data;
 	private short width;
-	private short lenght;
+	private short length;
 	private short height;
 
-	public Schematic(short[] blocks, byte[] data, short width, short lenght, short height) {
+	public Schematic(short[] blocks, byte[] data, short width, short length, short height) {
 		this.blocks = blocks;
 		this.data = data;
 		this.width = width;
-		this.lenght = lenght;
+		this.length = length;
 		this.height = height;
 	}
 
@@ -51,10 +51,10 @@ public class Schematic {
 	}
 
 	/**
-	 * @return the lenght
+	 * @return the length
 	 */
-	public short getLenght() {
-		return lenght;
+	public short getLength() {
+		return length;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class Schematic {
 		final short[] blocks = schematic.getBlocks();
 		final byte[] blockData = schematic.getData();
 
-		final short length = schematic.getLenght();
+		final short length = schematic.getLength();
 		final short width = schematic.getWidth();
 		short height = schematic.getHeight();
 		
