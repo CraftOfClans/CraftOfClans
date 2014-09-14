@@ -3,5 +3,5 @@ main: com.icraftgames.main.CraftOfClans
 version: 0.01
 
 description: >
-                 CraftOfClans
+                 Craft of Clans
 commands:

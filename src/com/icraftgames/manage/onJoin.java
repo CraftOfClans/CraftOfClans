@@ -9,7 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;*/
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.icraftgames.main.CraftOfClans;
 
@@ -17,14 +24,19 @@ public class onJoin implements Listener{
 	
 	public static CraftOfClans plugin;
 	
-	//@EventHandler
-	/*public void onJoin(PlayerJoinEvent ev) {
+	public onJoin (CraftOfClans plugin) {
+		this.plugin = plugin;
+	}
+	
+	@EventHandler
+	public void joinEvent(PlayerJoinEvent ev) {
+		try {
+		
 		Player p = ev.getPlayer();
 		p.setMaxHealth(0.1);
 		
-		
-	    for(Player p1 : Bukkit.getOnlinePlayers()) {
-	    	plugin.getConfig().set(p1.getName().toLowerCase() + ".mode", Boolean.valueOf(false));
+	    if (plugin.getConfig().get("player." + player.getName().toLowerCase() + ".mode") == null) {
+	    	plugin.getConfig().set("player." + player.getName().toLowerCase() + ".mode", Boolean.valueOf(false));
 	    }
 		
 		
@@ -45,5 +57,9 @@ public class onJoin implements Listener{
 		
 		ItemStack itemStack = new ItemStack(Material.IRON_FENCE);
 		ev.getPlayer().getInventory().setItem(0, itemStack);
-	}*/
+		
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+	}
 }
