@@ -266,34 +266,88 @@ public class ProgressBar {
 		int dist = 0;
 		
 		// calculates the previous three groups of variables
-		if (cornerOne.getX() == cornerTwo.getX()) {
-			xDist = end.getX() - cornerOne.getX();
-			dist = xDist;
-			if (cornerOne.getX() <= end.getX()) {
-				xMove = 1;
+		if ((cornerOne.getX() != cornerTwo.getX() && cornerOne.getY() != cornerTwo.getY())
+				|| (cornerOne.getX() != cornerTwo.getX() && cornerOne.getZ() != cornerTwo.getZ())
+				|| (cornerOne.getY() != cornerTwo.getY() && cornerOne.getZ() != cornerTwo.getZ())) {
+			if (cornerOne.getX() == cornerTwo.getX()) {
+				xDist = end.getX() - cornerOne.getX();
+				dist = xDist;
+				if (cornerOne.getX() <= end.getX()) {
+					xMove = 1;
+				} else {
+					xMove = -1;
+				}
+			} else if (cornerOne.getY() == cornerTwo.getY()) {
+				yDist = end.getY() - cornerOne.getY();
+				dist = yDist;
+				if (cornerOne.getY() <= end.getY()) {
+					yMove = 1;
+				} else {
+					yMove = -1;
+				}
+			} else if (cornerOne.getZ() == cornerTwo.getZ()) {
+				zDist = end.getZ() - cornerOne.getZ();
+				dist = zDist;
+				if (cornerOne.getZ() <= end.getZ()) {
+					zMove = 1;
+				} else {
+					zMove = -1;
+				}
 			} else {
-				xMove = -1;
-			}
-		} else if (cornerOne.getY() == cornerTwo.getY()) {
-			yDist = end.getY() - cornerOne.getY();
-			dist = yDist;
-			if (cornerOne.getY() <= end.getY()) {
-				yMove = 1;
-			} else {
-				yMove = -1;
-			}
-		} else if (cornerOne.getZ() == cornerTwo.getZ()) {
-			zDist = end.getZ() - cornerOne.getZ();
-			dist = zDist;
-			if (cornerOne.getZ() <= end.getZ()) {
-				zMove = 1;
-			} else {
-				zMove = -1;
+				throw new IllegalArgumentException("The blocks corrisponding to cornerOne and cornerTwo must share a plane");
 			}
 		} else {
-			throw new IllegalArgumentException("The blocks corrisponding to cornerOne and cornerTwo must share a plane");
+			List<Block> firstChunk = calculateCluster(cornerOne, cornerTwo);
+			
+			boolean showError = true;
+			
+			for (Block b : firstChunk) {
+				if (end.getX() != b.getX() && end.getY() == b.getY() && end.getZ() == b.getZ()) {
+					xDist = end.getX() - cornerOne.getX();
+					dist = xDist;
+					if (cornerOne.getX() <= end.getX()) {
+						xMove = 1;
+					} else {
+						xMove = -1;
+					}
+					
+					showError = false;
+					
+					break;
+				} else if (end.getX() == b.getX() && end.getY() != b.getY() && end.getZ() == b.getZ()) {
+					yDist = end.getY() - cornerOne.getY();
+					dist = yDist;
+					if (cornerOne.getY() <= end.getY()) {
+						yMove = 1;
+					} else {
+						yMove = -1;
+					}
+					
+					showError = false;
+					
+					break;
+				} else if (end.getX() == b.getX() && end.getY() == b.getY() && end.getZ() != b.getZ()) {
+					zDist = end.getZ() - cornerOne.getZ();
+					dist = zDist;
+					if (cornerOne.getZ() <= end.getZ()) {
+						zMove = 1;
+					} else {
+						zMove = -1;
+					}
+					
+					showError = false;
+					
+					break;
+				}
+			}
+			
+			if (showError == true) {
+				throw new IllegalArgumentException("The 'end' block must be inside the last chunk.");
+				// Note: this is only true when the progress bar is 1 wide or tall.
+			}
 		}
-		
+			
+			
 		// Clones the two corner inputs for calcualtion.
 		Block cornerOneClone = cornerOne;
 		Block cornerTwoClone = cornerTwo;
