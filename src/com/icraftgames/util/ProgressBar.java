@@ -341,7 +341,7 @@ public class ProgressBar {
 				}
 			}
 			
-			if (showError == true) {
+			if (showError) {
 				throw new IllegalArgumentException("The 'end' block must be inside the last chunk.");
 				// Note: this is only true when the progress bar is 1 wide or tall.
 			}
