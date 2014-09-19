@@ -1,11 +1,5 @@
 package com.icraftgames.main;
 
-
-
-
-
-
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -32,7 +26,6 @@ import com.icraftgames.manage.UIManager;
 import com.icraftgames.manage.onJoin;
 import com.icraftgames.util.Build;
 
-
 public class CraftOfClans extends JavaPlugin implements Listener { 
 	
 	public Location Cursor;
@@ -43,16 +36,8 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 		
 		PluginManager pm = getServer().getPluginManager();
 	    pm.registerEvents(this, this);
-	    //registerEvents(this, new ChatManager());
 	    registerEvents(this, new Build());
 	    registerEvents(this, new onJoin(plugin));
-	    
-		/*ScoreboardManager manager = Bukkit.getScoreboardManager();
-		Scoreboard board = manager.getNewScoreboard();
-		Objective objectiveGold = board.registerNewObjective("gold", "dummy");
-		Objective objectiveElixir = board.registerNewObjective("Elixir", "dummy");
-		objectiveGold.setDisplaySlot(DisplaySlot.SIDEBAR);
-		objectiveElixir.setDisplaySlot(DisplaySlot.SIDEBAR);*/
 	    
 	    ElixerGoldManager.setUp();
 	    
@@ -68,10 +53,6 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public void onDisable() {
 		System.out.println("CraftOfClans has been disabled.");
 	}
-
-
-	
-
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
@@ -79,7 +60,6 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			Player player = (Player) sender;
 			if(command.getName().equalsIgnoreCase("create")) {
 				player.sendMessage("api");
-				//BarAPI.setBar(player.getLocation(), 5, 3);
 			}else if(command.getName().equalsIgnoreCase("paste")) {
 				Build.BuildStructre(player.getLocation(), player, "base.schematic");
 			}else if(command.getName().equalsIgnoreCase("createplayer")) {
@@ -123,7 +103,6 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			
 		}
 	}
-	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked(); // The player that clicked the item

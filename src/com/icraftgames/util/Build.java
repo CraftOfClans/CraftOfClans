@@ -12,9 +12,9 @@ import com.icraftgames.main.Paste;
 public class Build implements Listener{
 	
 	public static void BuildStructre(Location loc, Player player, String file) {
-		String fileready = null;
+		String fileReady = null;
 		if(file.equalsIgnoreCase("RAILS")) {
-			fileready = "storage1.schematic";
+			fileReady = "storage1.schematic";
 		}else {
 			return;
 		}
@@ -27,12 +27,13 @@ public class Build implements Listener{
 		//Try and Catch to paste the object
 		
 		try {
-			Paste.paste(snap, fileready);
+			Paste.paste(snap, fileReady);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	public void UpgradeStructre() {
 		
 	}
