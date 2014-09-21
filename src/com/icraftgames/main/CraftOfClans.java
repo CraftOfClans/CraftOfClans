@@ -25,6 +25,7 @@ import com.icraftgames.manage.ElixerGoldManager;
 import com.icraftgames.manage.UIManager;
 import com.icraftgames.manage.onJoin;
 import com.icraftgames.util.Build;
+import com.icraftgames.util.GetTargetBlock;
 
 public class CraftOfClans extends JavaPlugin implements Listener { 
 	
@@ -58,13 +59,15 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 		
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
-			if(command.getName().equalsIgnoreCase("create")) {
+			if (command.getName().equalsIgnoreCase("create")) {
 				player.sendMessage("api");
-			}else if(command.getName().equalsIgnoreCase("paste")) {
+			} else if (command.getName().equalsIgnoreCase("paste")) {
 				Build.BuildStructre(player.getLocation(), player, "base.schematic");
-			}else if(command.getName().equalsIgnoreCase("createplayer")) {
+			} else if (command.getName().equalsIgnoreCase("createplayer")) {
 				getConfig().set("player." + player.getName().toLowerCase() + ".g", Integer.valueOf(1000));
 				getConfig().set("player." + player.getName().toLowerCase() + ".e", Integer.valueOf(1000));
+			} else if (command.getName().equalsIgnoreCase("test")) {
+				// your test goes here
 			}
 		}
 		

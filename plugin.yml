@@ -5,3 +5,5 @@ version: 0.01
 description: >
                  Craft of Clans
 commands:
+  test:
+    description: used for testing
