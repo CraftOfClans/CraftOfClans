@@ -1,11 +1,5 @@
 package com.icraftgames.main;
 
-
-
-
-
-
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -31,7 +25,7 @@ import com.icraftgames.manage.ElixerGoldManager;
 import com.icraftgames.manage.UIManager;
 import com.icraftgames.manage.onJoin;
 import com.icraftgames.util.Build;
-
+import com.icraftgames.util.GetTargetBlock;
 
 public class CraftOfClans extends JavaPlugin implements Listener { 
 	
@@ -43,16 +37,8 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 		
 		PluginManager pm = getServer().getPluginManager();
 	    pm.registerEvents(this, this);
-	    //registerEvents(this, new ChatManager());
 	    registerEvents(this, new Build());
 	    registerEvents(this, new onJoin(plugin));
-	    
-		/*ScoreboardManager manager = Bukkit.getScoreboardManager();
-		Scoreboard board = manager.getNewScoreboard();
-		Objective objectiveGold = board.registerNewObjective("gold", "dummy");
-		Objective objectiveElixir = board.registerNewObjective("Elixir", "dummy");
-		objectiveGold.setDisplaySlot(DisplaySlot.SIDEBAR);
-		objectiveElixir.setDisplaySlot(DisplaySlot.SIDEBAR);*/
 	    
 	    ElixerGoldManager.setUp();
 	    
@@ -68,23 +54,20 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public void onDisable() {
 		System.out.println("CraftOfClans has been disabled.");
 	}
-
-
-	
-
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
-			if(command.getName().equalsIgnoreCase("create")) {
+			if (command.getName().equalsIgnoreCase("create")) {
 				player.sendMessage("api");
-				//BarAPI.setBar(player.getLocation(), 5, 3);
-			}else if(command.getName().equalsIgnoreCase("paste")) {
+			} else if (command.getName().equalsIgnoreCase("paste")) {
 				Build.BuildStructre(player.getLocation(), player, "base.schematic");
-			}else if(command.getName().equalsIgnoreCase("createplayer")) {
+			} else if (command.getName().equalsIgnoreCase("createplayer")) {
 				getConfig().set("player." + player.getName().toLowerCase() + ".g", Integer.valueOf(1000));
 				getConfig().set("player." + player.getName().toLowerCase() + ".e", Integer.valueOf(1000));
+			} else if (command.getName().equalsIgnoreCase("test")) {
+				// your test goes here
 			}
 		}
 		
@@ -102,7 +85,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 				p.sendMessage(ChatColor.GREEN + "You opened the Shop!");
 			}else {
 				@SuppressWarnings("deprecation")
-				Block b = p.getTargetBlock(null, 200);
+				Block b = GetTargetBlock.getTargetBlock(p, 200);
 				final Location loc = b.getLocation();
 				if(loc.getBlock().getType().equals(Material.BEACON) && mode) {
 					UIManager.giveItemName(p, Material.RAILS, 5, "Gold Mine", "Right click to place!");
@@ -123,7 +106,6 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			
 		}
 	}
-	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked(); // The player that clicked the item
@@ -201,7 +183,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			
 			if(mode) {
 				/** Already clicked, needs to place if correct **/
-				//Block b2 = p.getTargetBlock(null, 200);
+				//Block b2 = GetTargetBlock.getTargetBlock(p, 200);
 				//ocation loc = new Location(b2.getWorld(), b2.getX(), 31, b2.getZ());
 				/**if(loc.getBlock().getType().equals(Material.BEACON)) {
 					loc.getBlock().setType(Material.AIR);

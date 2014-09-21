@@ -12,11 +12,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.icraftgames.util.GetTargetBlock;
+
 public class UIManager {
 	
-	@SuppressWarnings("deprecation")
 	public Block getLookingAt(Player p) {
-		   Block b = p.getTargetBlock(null, 200);
+		   Block b = GetTargetBlock.getTargetBlock(p, 200);
 		   return b;
 	}
 	
