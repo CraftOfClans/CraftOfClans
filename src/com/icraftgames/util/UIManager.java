@@ -14,9 +14,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class UIManager {
 	
-	@SuppressWarnings("deprecation")
 	public Block getLookingAt(Player p) {
-		   Block b = p.getTargetBlock(null, 200);
+		   Block b = GetTargetBlock.getTargetBlock(p, 200);
 		   return b;
 	}
 	

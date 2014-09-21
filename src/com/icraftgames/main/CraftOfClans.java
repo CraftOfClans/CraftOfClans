@@ -85,7 +85,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 				p.sendMessage(ChatColor.GREEN + "You opened the Shop!");
 			}else {
 				@SuppressWarnings("deprecation")
-				Block b = p.getTargetBlock(null, 200);
+				Block b = GetTargetBlock.getTargetBlock(p, 200);
 				final Location loc = b.getLocation();
 				if(loc.getBlock().getType().equals(Material.BEACON) && mode) {
 					UIManager.giveItemName(p, Material.RAILS, 5, "Gold Mine", "Right click to place!");
@@ -183,7 +183,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 			
 			if(mode) {
 				/** Already clicked, needs to place if correct **/
-				//Block b2 = p.getTargetBlock(null, 200);
+				//Block b2 = GetTargetBlock.getTargetBlock(p, 200);
 				//ocation loc = new Location(b2.getWorld(), b2.getX(), 31, b2.getZ());
 				/**if(loc.getBlock().getType().equals(Material.BEACON)) {
 					loc.getBlock().setType(Material.AIR);
