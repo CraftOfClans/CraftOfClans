@@ -80,7 +80,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public void RightClick(PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
 		boolean mode = getConfig().getBoolean(p.getName().toLowerCase() + ".mode");
-		if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+		if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
 			if(p.getItemInHand().getType().equals(Material.EMERALD)) {
 				p.openInventory(UIManager.Shop);
 				p.sendMessage(ChatColor.GREEN + "You opened the Shop!");
