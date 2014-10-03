@@ -1,7 +1,5 @@
 package com.icraftgames.main;
 
-import java.util.Date;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -87,7 +85,6 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 				p.openInventory(UIManager.Shop);
 				p.sendMessage(ChatColor.GREEN + "You opened the Shop!");
 			}else {
-				@SuppressWarnings("deprecation")
 				Block b = GetTargetBlock.getTargetBlock(p, 200);
 				final Location loc = b.getLocation();
 				if(loc.getBlock().getType().equals(Material.BEACON) && mode) {

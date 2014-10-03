@@ -54,4 +54,28 @@ public class SystemTime {
 		
 		return milliseconds;
 	}
+	
+	/**
+	 * Gets the number of milliseconds until the given date.
+	 * 
+	 * @param endTime
+	 * End date
+	 * @return
+	 * Milliseconds until endTime
+	 */
+	public static long timeRemaining (Date endTime) {
+		return endTime.getTime() - new Date().getTime();
+	}
+	
+	/**
+	 * Checks if the given instant has already passed.
+	 * 
+	 * @param endTime
+	 * Date to check
+	 * @return
+	 * True if the given instant is before the current instant. Otherwise, it returns false.
+	 */
+	public static boolean hasPassed (Date endTime) {
+		return new Date().after(endTime);
+	}
 }
