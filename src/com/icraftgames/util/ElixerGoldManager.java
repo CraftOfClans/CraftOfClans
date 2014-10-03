@@ -10,6 +10,10 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 public class ElixerGoldManager {
+	public static ScoreboardManager manager = Bukkit.getScoreboardManager();
+	public static Scoreboard board = manager.getNewScoreboard();
+	public static Objective objective = board.registerNewObjective("dummy", "dummy");
+	
 	
 	public static int getGold() {
 		return 5;
@@ -20,26 +24,26 @@ public class ElixerGoldManager {
 	}
 	
 	public static void setUp() {
-		ScoreboardManager manager = Bukkit.getScoreboardManager();
-		Scoreboard board = manager.getNewScoreboard();
 		
-		Objective objective = board.registerNewObjective("dummy", "dummy");
+		
 		
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		objective.setDisplayName("Money");
 		
-		for(Player online : Bukkit.getOnlinePlayers()) {
-			online.setScoreboard(board);
-			
-			@SuppressWarnings("deprecation")
-			Score Elixer = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.DARK_PURPLE + "Elixer: " ));
-			Elixer.setScore(getElixir());
-			
-			@SuppressWarnings("deprecation")
-			Score Gold = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GOLD + "Gold:"));
-			Gold.setScore(getGold());
-			
-		}
+		
+	}
+	
+	public void playerSetUp(Player p) {
+		p.setScoreboard(board);
+		
+		@SuppressWarnings("deprecation")
+		Score Elixer = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.DARK_PURPLE + "Elixer: " ));
+		Elixer.setScore(getElixir());
+		
+		@SuppressWarnings("deprecation")
+		Score Gold = objective.getScore(Bukkit.getOfflinePlayer(ChatColor.GOLD + "Gold:"));
+		Gold.setScore(getGold());
+		
 	}
 }
