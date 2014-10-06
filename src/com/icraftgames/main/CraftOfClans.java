@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -67,7 +68,7 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 				getConfig().set("player." + player.getName().toLowerCase() + ".g", Integer.valueOf(1000));
 				getConfig().set("player." + player.getName().toLowerCase() + ".e", Integer.valueOf(1000));
 			} else if (command.getName().equalsIgnoreCase("test")) {
-				// your test goes here
+				// Your test goes here
 			}
 		}
 		
@@ -79,12 +80,11 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	public void RightClick(PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
 		boolean mode = getConfig().getBoolean(p.getName().toLowerCase() + ".mode");
-		if(event.getAction().toString() == "RIGHT_CLICK_BLOCK") {
+		if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
 			if(p.getItemInHand().getType().equals(Material.EMERALD)) {
 				p.openInventory(UIManager.Shop);
 				p.sendMessage(ChatColor.GREEN + "You opened the Shop!");
 			}else {
-				@SuppressWarnings("deprecation")
 				Block b = GetTargetBlock.getTargetBlock(p, 200);
 				final Location loc = b.getLocation();
 				if(loc.getBlock().getType().equals(Material.BEACON) && mode) {
