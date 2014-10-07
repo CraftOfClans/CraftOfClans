@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
@@ -44,6 +45,9 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 	    ElixerGoldManager.setUp();
 	    
 	    System.out.println("CraftOfClans is now running.");
+	    
+	    getConfig().options().copyDefaults(true);
+		saveConfig();
 	}
 	
 	public static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
@@ -233,15 +237,31 @@ public class CraftOfClans extends JavaPlugin implements Listener {
 		}
 	}
 	
+	//chat prettifier
 	@EventHandler
 	public void Chat(AsyncPlayerChatEvent event) {
-		Player player = event.getPlayer();
 		event.setCancelled(true);
-		for(Player p : Bukkit.getOnlinePlayers()) {
-			p.sendMessage(ChatColor.GREEN + "" + player.getName().toLowerCase() + ChatColor.GRAY + "   " + event.getMessage());
-		}
+		event.getPlayer().getServer().broadcastMessage(ChatColor.GREEN + "" + event.getPlayer().getName() + ChatColor.GRAY + "   " + event.getMessage());
 	}
 	
+	
+	@EventHandler
+	public void joinEvent(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
+		// UUID string to save space
+		String uuid = player.getUniqueId().toString();
+		
+		// Blank entry
+		if (getConfig().get("players." + uuid) == null) {
+			getConfig().set("players." + uuid, "");
+		}
+		
+		if (getConfig().get("players." + uuid + ".timer") == null) {
+			getConfig().set("players." + uuid + ".timer", "");
+		}
+		
+		saveConfig();
+	}
 	
 
 	
